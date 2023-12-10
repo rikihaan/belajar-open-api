@@ -1,0 +1,65 @@
+{
+    "openapi": "3.0.3",
+    "info":{
+        "title":"Todolist Restful Api",
+        "version":"1",
+        "description":"Open Api for todolist Restful API",
+        "termsOfService":"www.titipinformatika.com",
+        "contact":{
+            "name":"Asep Riki",
+            "email":"titip.informatika@gmail.com",
+            "url":"www.titipinformatika.com"
+        },
+        "license":{
+            "name":"APACHE 2.0",
+            "url":"https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "servers":[
+        {
+            "description": "Resful API todolist server",
+            "url": "https://{environment}.titipinformatika/api/v1",
+            "variables": {
+                "environment":{
+                    "description": "server environment",
+                    "default": "dev",
+                    "enum": [
+                        "dev",
+                        "qe",
+                        "prod"
+                    ]
+                }
+            }
+        }
+    ],
+    "externalDocs": {
+        "description": "Youtube Titip Informatika",
+        "url": "https://youtube.com/titipinformatika"
+    },
+    "paths":{
+        "/todolist":{
+            "get":{
+                "summary": "Get All todolist",
+                "description": "get all todolist in database",
+                "responses": {}
+            },
+            "post":{
+                "summary": "Create new todolist",
+                "description": "create new todolist in database",
+                "responses": {}
+            }
+        },
+        "/todolist/{todolistid}":{
+            "delete":{
+                "summary": "Delete Todolist",
+                "description": "delete todolist existing in database",
+                "responses": {}  
+            },
+            "put":{
+                "summary": "Update Todolist",
+                "description": "Update todolist exiting in database",
+                "responses": {}
+            }
+        }
+    }
+}

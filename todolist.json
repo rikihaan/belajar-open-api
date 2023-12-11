@@ -41,11 +41,69 @@
             "get":{
                 "summary": "Get All todolist",
                 "description": "get all todolist in database",
+                "parameters": [
+                    {
+                        "name": "include_done",
+                        "description": "Include done todolist in the result",
+                        "required": false,
+                        "in": "query",
+                        "schema":{
+                            "type": "boolean",
+                            "default":true,
+                            "nullable": true
+                        }
+                    },{
+                        "name": "name",
+                        "description": "Search todolist by name",
+                        "required": false,
+                        "in": "query",
+                        "schema":{
+                            "type": "string",
+                            "nullable": true,
+                            "minLength": 1,
+                            "maxLength": 100
+                        }
+
+                    }
+                ],
                 "responses": {}
             },
             "post":{
                 "summary": "Create new todolist",
                 "description": "create new todolist in database",
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                       "minLength": 1,
+                                       "required": true
+
+                                    },
+                                    "priority":{
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "required": true,
+                                        "default":1
+                                    },
+                                    "tags":{
+                                        "type": "array",
+                                        "required": false,
+                                        "minItems": 1,
+                                        "items":{
+                                            "type": "string",
+                                            "minLength": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {}
             }
         },
@@ -53,11 +111,60 @@
             "delete":{
                 "summary": "Delete Todolist",
                 "description": "delete todolist existing in database",
+                "parameters": [
+                    {
+                        "name": "todolistid",
+                        "in": "path",
+                        "required": true,
+                        "description": "Todolist id for deleted",
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                        }
+                    }
+                ],
                 "responses": {}  
             },
             "put":{
                 "summary": "Update Todolist",
                 "description": "Update todolist exiting in database",
+                "parameters": [
+                    {
+                        "name": "todolistId",
+                        "in": "path",
+                        "required": true,
+                        "description": "Update existing todolist in database",
+                        "schema":{
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 100
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "required": true
+                                    },
+                                    "priority":{
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "minLength": 1,
+                                        "required": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {}
             }
         }
